@@ -1,6 +1,6 @@
 Name: ari-backup
 Version: 1.0.10
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: A helpful wrapper around rdiff-backup
 License: BSD
 URL: https://github.com/jpwoodbu/ari-backup
@@ -56,6 +56,7 @@ cp include/cron/ari-backup %{buildroot}/%{_sysconfdir}/cron.daily/
 %doc README.md ari-backup-local-demo ari-backup-local-lvm-demo ari-backup-remote-demo ari-backup-remote-lvm-demo
 %{python_sitelib}/ari_backup
 %{python_sitelib}/*.egg-info
+%dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/ari-backup.conf.yaml
 
 # Because ari-backup may be used as a central backup service, its job
@@ -77,6 +78,9 @@ cp include/cron/ari-backup %{buildroot}/%{_sysconfdir}/cron.daily/
 
 
 %changelog
+* Sun Nov 8 2015 Randy Barlow <randy@electronsweatshop.com> 1.0.10-3
+- Configure the package to own the /etc/ari-backup directory.
+
 * Thu Oct 8 2015 Randy Barlow <randy@electronsweatshop.com> 1.0.10-2
 - Install examples as documentation instead of to the jobs folder
 - BuildRequire python2-devel and use the python2 macro in the spec file
